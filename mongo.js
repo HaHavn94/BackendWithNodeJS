@@ -6,7 +6,7 @@ if (process.argv.length < 3) {
 }
 
 const url =
-    `mongodb+srv://havu:Ha123456@mongostudy.aaoi4w8.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+    `mongodb+srv://havu@mongostudy.aaoi4w8.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
