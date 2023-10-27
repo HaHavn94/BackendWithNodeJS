@@ -1,5 +1,8 @@
+require('dotenv').config()
 const express = require('express')
 var morgan = require('morgan');
+
+const Person = require('./models/person')
 
 const app = express()
 const cors = require('cors')
@@ -90,32 +93,6 @@ app.post('/api/persons', (request, response) => {
 })
 app.use(express.static('build'))
 
-const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
-})
-
-const mongoose = require('mongoose')
-
-if (process.argv.length < 3) {
-    console.log('give password as argument')
-    process.exit(1)
-}
-
-const password = process.argv[2]
-
-
-const url =
-    `mongodb+srv://havu:${password}@mongostudy.aaoi4w8.mongodb.net/phonebookApp?retryWrites=true&w=majority`
-
-mongoose.set('strictQuery', false)
-mongoose.connect(url)
-
-const personSchema = new mongoose.Schema({
-    name: String,
-    number: String
-})
-
 const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length > 3) {
@@ -142,5 +119,13 @@ app.get('/api/persons', (request, response) => {
 
 
 })
+
+
+const PORT = process.env.PORT
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+})
+
+
 
 

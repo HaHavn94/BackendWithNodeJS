@@ -5,8 +5,10 @@ if (process.argv.length < 3) {
     process.exit(1)
 }
 
+const password = process.argv[2];
+
 const url =
-    `mongodb+srv://havu@mongostudy.aaoi4w8.mongodb.net/phonebookApp?retryWrites=true&w=majority`
+    `mongodb+srv://havu:${password}@mongostudy.aaoi4w8.mongodb.net/phonebookApp?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
@@ -39,6 +41,12 @@ Person.find({}).then(result => {
         console.log(person)
     })
     mongoose.connection.close()
+})
+
+app.get('/api/persons', (request, response) => {
+    Person.find({}).then(persons => {
+        response.json(persons)
+    })
 })
 
 
