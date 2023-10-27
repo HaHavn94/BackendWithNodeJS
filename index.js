@@ -1,14 +1,12 @@
-require('dotenv').config()
 
 const express = require('express')
-var morgan = require('morgan');
-
-const Person = require('./models/person')
-
 const app = express()
 const cors = require('cors')
+require('dotenv').config()
+const morgan = require('morgan');
 
-app.use(cors())
+
+const Person = require('./models/person')
 
 let persons = [
     {
@@ -112,8 +110,8 @@ if (process.argv.length > 3) {
 }
 
 */
+app.use(cors())
 app.use(express.json());
-
 app.use(express.static('build'))
 
 
