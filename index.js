@@ -1,6 +1,8 @@
 require('dotenv').config()
+
 const express = require('express')
 var morgan = require('morgan');
+
 const Person = require('./models/person')
 
 const app = express()
@@ -31,6 +33,8 @@ let persons = [
     }
 ]
 
+
+
 morgan.token('body', function getBody(request) {
     return JSON.stringify(request.body);
 })
@@ -43,6 +47,7 @@ app.get('/info', (request, response) => {
     response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${today}</p>`)
 })
 
+/*
 app.get('/api/persons/:id', (request, response) => {
     const id = Number(request.params.id)
     const person = persons.find(person => person.id === id);
@@ -64,7 +69,7 @@ app.delete('/api/persons/:id', (request, response) => {
 })
 
 // add new note
-app.use(express.json());
+
 
 
 app.post('/api/persons', (request, response) => {
@@ -90,7 +95,6 @@ app.post('/api/persons', (request, response) => {
     }
 
 })
-app.use(express.static('build'))
 
 if (process.argv.length > 3) {
     const person = new Person({
@@ -107,6 +111,12 @@ if (process.argv.length > 3) {
 
 }
 
+*/
+app.use(express.json());
+
+app.use(express.static('build'))
+
+
 app.get('/api/persons', (request, response) => {
 
     Person.find({}).then(persons => {
@@ -116,7 +126,6 @@ app.get('/api/persons', (request, response) => {
 
 
 })
-
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
