@@ -1,7 +1,6 @@
 require('dotenv').config()
 const express = require('express')
 var morgan = require('morgan');
-
 const Person = require('./models/person')
 
 const app = express()
@@ -92,8 +91,6 @@ app.post('/api/persons', (request, response) => {
 
 })
 app.use(express.static('build'))
-
-const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length > 3) {
     const person = new Person({
