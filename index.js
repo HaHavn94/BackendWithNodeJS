@@ -42,6 +42,7 @@ app.post('/api/persons', (request, response) => {
     const person = new Person({
         name: body.name,
         number: body.number,
+
     })
 
     person.save().then(savedPerson => {
@@ -49,7 +50,7 @@ app.post('/api/persons', (request, response) => {
     })
 })
 
-app.get('/apipersons/:id', (request, response) => {
+app.get('/api/persons/:id', (request, response) => {
     Person.findById(request.params.id).then(note => {
         response.json(note)
     })
