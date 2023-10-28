@@ -35,8 +35,8 @@ app.get('/api/persons', (request, response) => {
 app.post('/api/persons', (request, response) => {
     const body = request.body
 
-    if (body.content === undefined) {
-        return response.status(400).json({ error: 'content missing' })
+    if (body.name === undefined) {
+        return response.status(400).json({ error: 'name missing' })
     }
 
     const person = new Person({
@@ -47,6 +47,7 @@ app.post('/api/persons', (request, response) => {
 
     person.save().then(savedPerson => {
         response.json(savedPerson)
+        console.log("save person in backend successfully")
     })
 })
 
